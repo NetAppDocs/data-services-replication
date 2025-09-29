@@ -1,0 +1,52 @@
+---
+sidebar: sidebar
+permalink: concept-replication-policies.html
+keywords: replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, disaster recovery, DR
+summary: You might need help choosing a replication policy when you set up data replication in NetApp Console. A replication policy defines how the storage system replicates data from a source volume to a destination volume.
+---
+
+= Learn about replication policies used in NetApp Replication
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+[.lead]
+You might need help choosing a replication policy when you set up data replication in NetApp Replication. A replication policy defines how the storage system replicates data from a source volume to a destination volume.
+
+== What replication policies do
+
+The ONTAP operating system automatically creates backups called snapshot copies. A snapshot copy is a read-only image of a volume that captures the state of the file system at a point in time.
+
+When you replicate data between systems, you replicate snapshot copies from a source volume to a destination volume. A replication policy specifies which snapshot copies to replicate from the source volume to the destination volume.
+
+TIP: Replication policies are also referred to as _protection_ policies because they are powered by SnapMirror and SnapVault technologies, which provide disaster recovery protection and disk-to-disk backup and recovery.
+
+The following image shows the relationship between snapshot copies and replication policies:
+
+image:diagram_replication_policies.png[This illustration shows snapshot copies on a source volume and a replication policy that specifies replication of all or specific snapshot copies from the source volume to the destination volume.]
+
+== Types of replication policies
+
+There are three types of replication policies:
+
+* A _Mirror_ policy replicates newly created snapshot copies to a destination volume.
++
+You can use these snapshot copies to protect the source volume in preparation for disaster recovery or for one-time data replication. You can activate the destination volume for data access at any time.
+
+* A _Backup_ policy replicates specific snapshot copies to a destination volume and typically retains them for a longer period of time than you would on the source volume.
++
+You can restore data from these snapshot copies when data is corrupted or lost, and retain them for standards compliance and other governance-related purposes.
+
+* A _Mirror and Backup_ policy provides both disaster recovery and long-term retention.
++
+Each system includes a default Mirror and Backup policy, which works well for many situations. If you find that you need custom policies, you can create your own using System Manager.
+
+The following images show the difference between the Mirror and Backup policies. A Mirror policy mirrors the snapshot copies available on the source volume.
+
+image:diagram_replication_snapmirror.png[This illustration shows snapshot copies on a source volume and a Mirror destination volume that mirrors the source volume.]
+
+A Backup policy typically retains snapshot copies longer than they are retained on the source volume:
+
+image:diagram_replication_snapvault.png[This illustration shows snapshot copies on a source volume and a Backup destination volume that includes more snapshot copies because SnapVault retains snapshot copies for long-term retention.]

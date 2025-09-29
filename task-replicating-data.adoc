@@ -1,0 +1,104 @@
+---
+sidebar: sidebar
+permalink: task-replicating-data.html
+keywords: ontap, cluster, discover, manage, BlueXP, hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, schedule, relationship, max transfer, maximum transfer rate, rate, transfer rate, intercluster lif, replication requirement, requirements, disaster recovery, DR, archive, archiving, retention, amazon fsx for ontap, fsx for ontap
+summary: You can replicate data between ONTAP systems by choosing a one-time data replication for data transfer, or a recurring schedule for disaster recovery or long-term retention. For example, you can set up data replication from an on-prem ONTAP system to Cloud Volumes ONTAP for disaster recovery.
+---
+
+= Set up data replication in NetApp Replication
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+[.lead]
+Using NetApp Replication, replicate data between ONTAP systems by choosing a one-time data replication for data transfer, or a recurring schedule for disaster recovery or long-term retention. For example, you can set up data replication from an on-prem ONTAP system to Cloud Volumes ONTAP for disaster recovery.
+
+== Step 1: Review data replication requirements
+
+Before you can replicate data, you should confirm that specific requirements are met for Cloud Volumes ONTAP, on-prem ONTAP clusters, or Amazon FSx for ONTAP.
+
+systems::
+If you haven't done so already, you need to create the systems for the source and target in the data replication relationship.
++
+* https://docs.netapp.com/us-en/bluexp-fsx-ontap/start/task-getting-started-fsx.html[Create an Amazon FSx for ONTAP system^]
+* https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-overview-cvo.html[Create a Cloud Volumes ONTAP system^]
+* https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-adding-systems.html[Add existing Cloud Volumes ONTAP systems^]
+* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html[Discover ONTAP clusters^]
+
+Version requirements::
+You should verify that the source and destination volumes are running compatible ONTAP versions before replicating data.
++
+https://docs.netapp.com/us-en/ontap/data-protection/compatible-ontap-versions-snapmirror-concept.html[View compatible ONTAP versions for SnapMirror relationships^]
+
+Requirements specific to Cloud Volumes ONTAP::
+* The instance's security group must include the required inbound and outbound rules: specifically, rules for ICMP and ports 11104 and 11105.
++
+These rules are included in the predefined security group.
+
+* To replicate data between two Cloud Volumes ONTAP systems in different subnets, the subnets must be routed together (this is the default setting).
+
+* To replicate data between two Cloud Volumes ONTAP systems in different cloud providers, you must have a VPN connection between the virtual networks.
+
+Requirements specific to ONTAP clusters::
+* An active SnapMirror license must be installed.
+
+* If the cluster is on your premises, you should have a connection from your corporate network to your virtual network in the cloud. This is typically a VPN connection.
+
+* ONTAP clusters must meet additional subnet, port, firewall, and cluster requirements.
++
+https://docs.netapp.com/us-en/ontap/peering/prerequisites-cluster-peering-reference.html#connectivity-requirements[View prerequisites for cluster peering in the ONTAP documentation^]
+
+Requirements specific to Amazon FSx for ONTAP::
+* If Cloud Volumes ONTAP is part of the relationship, ensure connectivity between VPCs by enabling VPC peering or by using a Transit Gateway.
+
+* If an on-prem ONTAP cluster is part of the relationship, ensure connectivity between your on-premises network and the AWS VPC by using a Direct Connect or VPN connection.
+
+== Step 2: Replicate data between systems
+
+You can replicate data by choosing a one-time data replication, which can help you move data to and from the cloud, or a recurring schedule, which can help with disaster recovery or long-term retention.
+
+.Steps
+
+. From the navigation menu, select *Storage > Management*.
+
+. On the Systems page, select the system that contains the source volume, drag it to the system to which you want to replicate the volume, and then select *Replication*.
+//+
+//image:screenshot-drag-and-drop.png[Screen shot: Shows a system being placed on top of another system to start the data replication process.]
++
+The remaining steps provide an example of how to create a sync relationship between Cloud Volumes ONTAP or on-prem ONTAP clusters.
+
+. *Source and Destination Peering Setup*: If this page appears, select all of the intercluster LIFs for the cluster peer relationship.
++
+The intercluster network should be configured so that cluster peers have _pair-wise full-mesh connectivity_, which means that each pair of clusters in a cluster peer relationship has connectivity among all of their intercluster LIFs.
++
+These pages appear if an ONTAP cluster that has multiple LIFs is the source or destination.
+
+. *Source Volume Selection*: Select the volume that you want to replicate.
+
+. *Destination Disk Type and Tiering*: If the target is a Cloud Volumes ONTAP system, select the destination disk type and choose whether you want to enable data tiering.
+
+. *Destination Volume Name*: Specify the destination volume name and choose the destination aggregate.
++
+If the destination is an ONTAP cluster, you must also specify the destination storage VM.
+
+. *Max Transfer Rate*: Specify the maximum rate (in megabytes per second) at which data can be transferred.
++
+You should limit the transfer rate. An unlimited rate might negatively impact the performance of other applications and it might impact your internet performance.
+
+. *Replication Policy*: Choose a default policy or select *Additional Policies*, and then select one of the advanced policies.
++
+For help, link:concept-replication-policies.html[learn about replication policies].
++
+If you choose a custom backup (SnapVault) policy, the labels associated with the policy must match the labels of the snapshot copies on the source volume. For more information, link:concept-backup-policies.html[learn how backup policies work].
+
+. *Schedule*: Choose a one-time copy or a recurring schedule.
++
+Several default schedules are available. If you want a different schedule, you must create a new schedule on the _destination_ cluster using System Manager.
+
+. *Review*: Review your selections and select *Go*.
+
+.Result
+
+NetApp Replication starts the data replication process. You can view details about the volume relationship from NetApp Replication.

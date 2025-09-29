@@ -1,0 +1,4 @@
+=== Support for Amazon FSx for ONTAP
+You can now replicate data from a Cloud Volumes ONTAP system or an on-premises ONTAP cluster to an Amazon FSx for ONTAP file system.
+
+https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html[Learn how to set up data replication].
