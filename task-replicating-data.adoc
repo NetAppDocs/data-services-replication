@@ -13,7 +13,7 @@ summary: You can replicate data between ONTAP systems by choosing a one-time dat
 :imagesdir: ./media/
 
 [.lead]
-Using NetApp Replication, replicate data between ONTAP systems by choosing a one-time data replication for data transfer, or a recurring schedule for disaster recovery or long-term retention. For example, you can set up data replication from an on-prem ONTAP system to Cloud Volumes ONTAP for disaster recovery.
+Using NetApp Replication, replicate data between ONTAP systems by choosing a one-time data replication for data transfer, or a recurring schedule for disaster recovery or long-term retention. For example, you can set up data replication from an on-premises ONTAP system to Cloud Volumes ONTAP for disaster recovery.
 
 == Step 1: Review data replication requirements
 
