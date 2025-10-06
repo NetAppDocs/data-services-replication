@@ -2,7 +2,7 @@ settings:
   name: NetApp Replication
   internal:
     pdf_enabled: true
-   prod:
+  prod:
     pdf_enabled: true
     harmony_enabled: true
   rss_page: "whats-new.html"
