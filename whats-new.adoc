@@ -1,0 +1,44 @@
+---
+sidebar: sidebar
+permalink: whats-new.html
+keywords: what's new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes, releases
+summary: Learn what's new with NetApp Replication.
+---
+
+= What's new in NetApp Replication
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+[.lead]
+Learn what's new in NetApp Replication.
+
+// tag::whats-new[]
+
+== 06 October 2025
+
+include::_whatsnew/2025-10-06.adoc[]
+
+
+== 18 September 2022
+
+include::_whatsnew/2022-09-18.adoc[]
+
+== 31 July 2022
+
+include::_whatsnew/2022-07-31.adoc[]
+
+== 02 September 2021
+
+include::_whatsnew/2021-09-02.adoc[]
+// end::whats-new[]
+
+== 05 May 2021
+
+=== Redesigned interface
+
+We redesigned Replication for ease of use and to match the current look and feel of the user interface.
+
+image:https://raw.githubusercontent.com/NetAppDocs/bluexp-replication/main/media/replication.gif[A screenshot of the redesigned Replication tab that shows a list of volume relationships.]

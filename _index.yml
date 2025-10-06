@@ -1,14 +1,24 @@
 indexpage:
-  title: # Unquoted string 
-  lead: # Quoted string
-  summary: # Quoted string 
-  keywords: # Unquoted comma-delimited list of keywords 
-  tiles: 
-    # Tile definition 
-    - title: # Quoted or unquoted string
-      links: 
-        # Link definition
-        - title: # Quoted or unquoted string
-          url: # Path to target
-        # Next link on this tile (title/url pair)
-    # Next tile on this page (title/links)
+  title: NetApp Replication documentation
+  lead: Replicate data between ONTAP storage systems to support backup and disaster recovery to the cloud or between clouds.
+  summary: Replicate data between ONTAP storage systems to support backup and disaster recovery to the cloud or between clouds.
+  keywords: replicate, storage systems, disaster recovery, cloud
+  tiles:
+    - title: Get started
+      links:
+        - title: Learn about NetApp Replication
+          url: concept-replication.html
+        - title: Set up data replication
+          url: task-replicating-data.html
+    - title: Use NetApp Replication
+      links:
+        - title: Manage data replication
+          url: task-managing-replication.html
+    - title: Blogs & community
+      links:
+        - title: NetApp Console
+          url: https://www.netapp.com/console
+        - title: NetApp Data Services
+          url: https://www.netapp.com/data-services/        
+        - title: NetApp Community
+          url: https://community.netapp.com
