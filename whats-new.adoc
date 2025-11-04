@@ -15,7 +15,6 @@ summary: Learn what's new with NetApp Replication.
 [.lead]
 Learn what's new in NetApp Replication.
 
-// tag::whats-new[]
 
 == 06 October 2025
 
@@ -33,7 +32,7 @@ include::_whatsnew/2022-07-31.adoc[]
 == 02 September 2021
 
 include::_whatsnew/2021-09-02.adoc[]
-// end::whats-new[]
+
 
 == 05 May 2021
 
