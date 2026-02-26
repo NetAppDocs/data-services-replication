@@ -1,7 +1,7 @@
 settings:
   name: NetApp Replication
   internal:
-    pdf_enabled: true
+    pdf_enabled: false
   prod:
     pdf_enabled: true
   release_notes_autogen:
