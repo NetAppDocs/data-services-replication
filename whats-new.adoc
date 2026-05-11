@@ -16,9 +16,9 @@ summary: Learn what's new with NetApp Replication.
 Learn what's new in NetApp Replication.
 
 
-== 11 May 2026
+== 13 April 2026
 
-include::_whatsnew/2026-05-11.adoc[]
+include::_whatsnew/2026-04-13.adoc[]
 
 == 06 October 2025
 
