@@ -6,6 +6,7 @@ settings:
     pdf_enabled: true
   release_notes_autogen:
     release_notes_repo: console-relnotes
+  harmony_enabled: true
   rss_page: "whats-new.html"
 sidebar:
   entries:
