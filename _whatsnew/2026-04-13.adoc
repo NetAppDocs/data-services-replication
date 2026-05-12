@@ -1,0 +1,5 @@
+=== Replication management for existing relationships with FSx for ONTAP
+
+Replication relationship management for FSx for ONTAP file systems as source or target is now in NetApp Workload Factory.
+
+link:https://docs.netapp.com/us-en/data-services-replication/task-managing-replication.html[Manage data replication]
