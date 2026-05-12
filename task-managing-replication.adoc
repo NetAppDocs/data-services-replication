@@ -21,9 +21,9 @@ Replication relationships with FSx for ONTAP file systems as source or target ar
 
 . link:task-login-replication.html[Log in to NetApp Replication]. 
 +
-Continue to step 2 to manage replication relationships with Cloud Volumes ONTAP systems or on-premises ONTAP systems. 
+Continue to step 2 to manage non-FSx for ONTAP replication relationships. 
 +
-To manage replication relationships with FSx for ONTAP file systems, after you log in to the NetApp Console, go to *Management* > *Systems*. Then select the FSx for ONTAP file system. Now you're in Workload Factory, where you can manage the replication relationships for the file system. Select the FSx for ONTAP file system from the list of systems, and then select the *Replication relationships* tab to view and manage the replication relationships for the file system.
+To manage replication relationships with FSx for ONTAP file systems, after you log in to the NetApp Console, go to *Storage* > *Management* > *Systems*. Then select the FSx for ONTAP file system. Now you're in Workload Factory in the FSx for ONTAP resource screen, where you can manage the replication relationships for the file system. Select the FSx for ONTAP file system from the list of systems, and then select the *Replication relationships* tab to view and manage the replication relationships for the file system.
 . Review the status of the data replication relationships to verify that they are healthy.
 +
 NOTE: If the Status of a relationship is idle and the Mirror State is uninitialized, you must initialize the relationship from the destination system for the data replication to occur according to the defined schedule. You can initialize the relationship by using System Manager or the command-line interface (CLI). These states can appear when the destination system fails and then comes back online.
