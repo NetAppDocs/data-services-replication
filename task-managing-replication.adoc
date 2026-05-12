@@ -69,4 +69,3 @@ Any data written to the original source volume between the last data replication
 .Result
 
 After you select an action, NetApp Replication updates the relationship or schedule.
-.
