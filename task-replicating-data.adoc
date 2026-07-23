@@ -22,10 +22,10 @@ Before you can replicate data, you should confirm that specific requirements are
 systems::
 If you haven't done so already, you need to create the systems for the source and target in the data replication relationship.
 +
-* https://docs.netapp.com/us-en/bluexp-fsx-ontap/start/task-getting-started-fsx.html[Create an Amazon FSx for ONTAP system^]
-* https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-overview-cvo.html[Create a Cloud Volumes ONTAP system^]
-* https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-adding-systems.html[Add existing Cloud Volumes ONTAP systems^]
-* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html[Discover ONTAP clusters^]
+* https://docs.netapp.com/us-en/storage-management-fsx-ontap/start/task-getting-started-fsx.html[Create an Amazon FSx for ONTAP system^]
+* https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/concept-overview-cvo.html[Create a Cloud Volumes ONTAP system^]
+* https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/task-adding-systems.html[Add existing Cloud Volumes ONTAP systems^]
+* https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html[Discover ONTAP clusters^]
 
 Version requirements::
 You should verify that the source and destination volumes are running compatible ONTAP versions before replicating data.
