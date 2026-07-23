@@ -24,5 +24,5 @@ NetApp Replication lets users copy data between ONTAP systems, Cloud Volumes ONT
 
 ## Typical user workflows
 
-- **Configure replication:** Set up a single or scheduled transfer when you need to move data; this can be a one-off event or a recurring event. This involves selecting the source and destination volumes, choosing a SnapMirror replication policy to meet the protection goal, and setting the transfer rate so that replication doesn't degrade other workload performances. 
+- **Configure replication:** Set up a single or scheduled transfer when you need to move data; this can be a one-off event or a recurring event. This involves selecting the source and destination volumes, choosing a SnapMirror replication policy to meet the protection goal, and setting the transfer rate so that replication doesn't degrade other workload performance.
 - **Manage existing relationships**: Check status, break or resync a relationship, reverse replication after failover, or update the schedule or transfer rate.
