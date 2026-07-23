@@ -23,7 +23,7 @@ The NetApp Console provides centralized management of NetApp storage and data se
 
 You don’t need a license or subscription to start using NetApp Console and you only incur charges when you need to deploy Console agents in your cloud to ensure connectivity to your storage systems or NetApp data services. However, some NetApp data services accessible from the Console are licensed or subscription-based. 
 
-Learn more about the https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html[NetApp Console].
+Learn more about the https://docs.netapp.com/us-en/console-setup-admin/concept-overview.html[NetApp Console].
 
 == Features
 
@@ -86,7 +86,7 @@ NetApp Replication supports simple, fanout, and cascade data protection configur
 
 == Replicate data using NetApp Backup and Recovery
 
-Starting with the NetApp Console agent 3.9.31 release, NetApp Backup and Recovery enables you to replicate data between volumes on separate ONTAP systems using SnapMirror and SnapVault technologies. So if you plan to replicate data to other ONTAP systems, and you also want to create backups of the same data to object storage, you may want to use https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-ontap-backup-to-cloud.html[NetApp Backup and Recovery^] so that you can manage your data protection needs with a single service.
+Starting with the NetApp Console agent 3.9.31 release, NetApp Backup and Recovery enables you to replicate data between volumes on separate ONTAP systems using SnapMirror and SnapVault technologies. So if you plan to replicate data to other ONTAP systems, and you also want to create backups of the same data to object storage, you may want to use https://docs.netapp.com/us-en/data-services-backup-recovery/prev-ontap-protect-overview.html[NetApp Backup and Recovery^] so that you can manage your data protection needs with a single service.
 
 Currently, the following functionality is only supported in  NetApp Replication - not when using the replication feature of NetApp Backup and Recovery. 
 
