@@ -1,5 +1,5 @@
 # Caller workflow for NetApp AI4IE custom agents
-# Custom agents live in the .github-private repository. This workflow is a wrapper that calls the reusable workflows in .github-private.
+# Custom agents live in the ai-workloads-poc repository. This workflow is a wrapper that calls the reusable workflows in ai-workloads-poc.
 #
 # Requires ANTHROPIC_API_KEY to be set as a repository or organization secret. Currently it is set as a repository secret
 #
@@ -18,10 +18,10 @@ on:
 jobs:
   claude-mvp:
     if: contains(github.event.comment.body, '@claude-mvp')
-    uses: NetAppDocs/.github-private/.github/workflows/reusable-claude-mvp.yml@main
+    uses: NetAppDocs/ai-workloads-poc/.github/workflows/reusable-claude-mvp.yml@main
     secrets: inherit
 
   claude-title:
     if: contains(github.event.comment.body, '@claude-title')
-    uses: NetAppDocs/.github-private/.github/workflows/reusable-claude-title.yml@main
+    uses: NetAppDocs/ai-workloads-poc/.github/workflows/reusable-claude-title.yml@main
     secrets: inherit
