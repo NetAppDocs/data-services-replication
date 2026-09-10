@@ -63,7 +63,13 @@ Any data written to the original source volume between the last data replication
 
 | Update | Starts an incremental transfer to update the destination volume.
 
-| Delete | Deletes the data protection relationship between the source and destination volumes, which means that data replication no longer occurs between the volumes. This action does not activate the destination volume for data access. 
+| Delete 
+a| Delete the data protection relationship between the source and destination volumes. This ends data replication between volumes.
+
+Deleting does not activate the destination volume for data access.
+
+[NOTE]
+Deleting the relationship also breaks the SnapMirror relationship, which briefly makes the destination volume the primary site for read/write operations. 
 |===
 
 .Result
