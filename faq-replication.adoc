@@ -17,19 +17,19 @@ This FAQ answers common questions about NetApp Replication. It focuses on concep
 
 == General concepts
 
-.Which source and target system combinations does NetApp Replication support?
+.Which source and target system combinations does Replication support?
 
-NetApp Replication supports replication between the following source and target systems:
+Replication supports replication between the following source and target systems:
 
 * Cloud Volumes ONTAP can replicate to Amazon FSx for ONTAP, Cloud Volumes ONTAP, or an on-prem ONTAP cluster.
 * An on-prem ONTAP cluster can replicate to Amazon FSx for ONTAP, Cloud Volumes ONTAP, or another on-prem ONTAP cluster.
 * Amazon FSx for ONTAP can replicate to Amazon FSx for ONTAP, Cloud Volumes ONTAP, or an on-prem ONTAP cluster.
 
-See the full table for details.
+See the link:concept-replication.html[supported systems table] for details.
 
-.What data protection configurations does NetApp Replication support?
+.What data protection configurations does Replication support?
 
-NetApp Replication supports three configurations:
+Replication supports three configurations:
 
 * *Simple*: replication occurs from volume A to volume B.
 * *Fanout*: replication occurs from volume A to multiple destinations.
@@ -39,17 +39,17 @@ NetApp Replication supports three configurations:
 
 The baseline transfer includes a full copy of the source data. Subsequent transfers contain only differential (incremental) copies of the source data.
 
-.Does NetApp Replication cost anything to use?
+.Does Replication cost anything to use?
 
-NetApp doesn't charge you for using NetApp Replication itself, but you should check with your cloud provider for applicable data ingress and egress charges. Note that NetApp Console only charges when you deploy Console agents to connect to your storage systems or data services, and some other NetApp data services accessible from the Console are licensed or subscription-based.
+NetApp doesn't charge you for using Replication itself, but you should check with your cloud provider for applicable data ingress and egress charges. The NetApp Console incurs charges when you deploy Console agents to connect to your storage systems or data services; some other NetApp data services accessible from the Console are licensed or subscription-based.
 
-.Do I need a license or subscription to use NetApp Console and NetApp Replication?
+.Do I need a license or subscription to use the Console and Replication?
 
-You don't need a license or subscription to start using NetApp Console, and you only incur charges when you deploy Console agents in your cloud for connectivity to your storage systems or NetApp data services. However, some NetApp data services accessible from the Console are licensed or subscription-based.
+You don't need a license or subscription to start using the Console or Replication.
 
-.Should I use NetApp Replication or NetApp Backup and Recovery to replicate data?
+.Should I use Replication or NetApp Backup and Recovery to replicate data?
 
-NetApp Backup and Recovery (starting with Console agent 3.9.31) can also replicate data between ONTAP volumes and is useful if you also want to back up the same data to object storage using a single service. However, NetApp Backup and Recovery's replication feature does not support cascade configurations, replicating to or from FSx for ONTAP systems, or one-time volume replication. If you need any of that functionality, use NetApp Replication instead.
+NetApp Backup and Recovery (starting with Console agent 3.9.31) can also replicate data between ONTAP volumes and is useful if you also want to back up the same data to object storage using a single service. However, NetApp Backup and Recovery's replication feature does not support cascade configurations, replicating to or from FSx for ONTAP systems, or one-time volume replication. If you need any of that functionality, use Replication instead.
 
 == Replication policies
 
@@ -81,7 +81,7 @@ Before replicating data, confirm the following:
 * The source and destination volumes are running compatible ONTAP versions.
 * Requirements specific to Cloud Volumes ONTAP, on-prem ONTAP clusters, or Amazon FSx for ONTAP are met, such as security group rules, routed subnets, VPN connections, an active SnapMirror license, and VPC peering or Direct Connect as applicable.
 
-See the requirements section for full details.
+See the link:task-replicating-data.html[data replication requirements] for full details.
 
 .What is required for cluster peering to work correctly across intercluster LIFs?
 
@@ -93,15 +93,11 @@ Several default schedules are available when setting up replication. If you want
 
 == Managing replication relationships
 
-.Where do I manage replication relationships involving Amazon FSx for ONTAP file systems?
-
-Replication relationships with FSx for ONTAP file systems as source or target are managed in NetApp Workload Factory, not directly in NetApp Replication. After logging in to the Console, go to *Storage* > *Management* > *Systems*, select the FSx for ONTAP file system, and use the *Replication relationships* tab in Workload Factory.
-
 .What does it mean if a replication relationship shows an idle status and an uninitialized mirror state?
 
 This can occur when the destination system fails and then comes back online. You must initialize the relationship from the destination system using System Manager or the CLI in order for data replication to resume according to the defined schedule.
 
-.What is the difference between the Break, Resync, and Reverse Resync actions?
+.What is the difference between the break, resync, and reverse resync actions?
 
 These actions have different effects:
 
@@ -116,17 +112,3 @@ Deleting a relationship removes the data protection relationship between the sou
 .Why should I limit the maximum transfer rate instead of leaving it unlimited?
 
 An unlimited transfer rate might negatively impact the performance of other applications and your internet performance. You should limit the maximum transfer rate (specified in megabytes per second) when setting up replication, and you can edit it later from the Replication Status page.
-
-== Access and support
-
-.How do I log in to NetApp Replication?
-
-Go to the NetApp Console, log in using your NetApp Support Site credentials or a NetApp cloud login, and then select *Protection* > *Replication* from the left navigation.
-
-.What happened to BlueXP replication and BlueXP?
-
-BlueXP replication has been renamed to NetApp Replication, and BlueXP has been renamed to NetApp Console. The NetApp Console, built on the enhanced and restructured BlueXP foundation, provides centralized management of NetApp storage and data services across on-premises and cloud environments.
-
-.What do I need to do before I can open a support case with NetApp technical support?
-
-Before you can open a support case with NetApp technical support, you need to add a NetApp Support Site (NSS) account to your Console account and then register for support.
