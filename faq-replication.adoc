@@ -1,0 +1,132 @@
+---
+sidebar: sidebar
+permalink: replication/faq-replication.html
+keywords: faq, frequently asked questions, frequently asked questions about netapp replication, snapmirror, snapvault, replication policies, backup policies, disaster recovery, data protection, cloud volumes ontap, amazon fsx for ontap, ontap, mirror, backup, cascade, fanout
+summary: "Frequently asked questions about NetApp Replication, SnapMirror, and SnapVault."
+---
+
+= FAQ for NetApp Replication
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+[.lead]
+This FAQ answers common questions about NetApp Replication. It focuses on concepts, terminology, and behavior that are useful when setting up, managing, and troubleshooting replication relationships between ONTAP systems, Cloud Volumes ONTAP, and Amazon FSx for ONTAP.
+
+== General concepts
+
+.Which source and target system combinations does NetApp Replication support?
+
+NetApp Replication supports replication between the following source and target systems:
+
+* Cloud Volumes ONTAP can replicate to Amazon FSx for ONTAP, Cloud Volumes ONTAP, or an on-prem ONTAP cluster.
+* An on-prem ONTAP cluster can replicate to Amazon FSx for ONTAP, Cloud Volumes ONTAP, or another on-prem ONTAP cluster.
+* Amazon FSx for ONTAP can replicate to Amazon FSx for ONTAP, Cloud Volumes ONTAP, or an on-prem ONTAP cluster.
+
+See the full table for details.
+
+.What data protection configurations does NetApp Replication support?
+
+NetApp Replication supports three configurations:
+
+* *Simple*: replication occurs from volume A to volume B.
+* *Fanout*: replication occurs from volume A to multiple destinations.
+* *Cascade*: replication occurs from volume A to volume B, and then from volume B to volume C.
+
+.What happens during the first replication transfer versus subsequent transfers?
+
+The baseline transfer includes a full copy of the source data. Subsequent transfers contain only differential (incremental) copies of the source data.
+
+.Does NetApp Replication cost anything to use?
+
+NetApp doesn't charge you for using NetApp Replication itself, but you should check with your cloud provider for applicable data ingress and egress charges. Note that NetApp Console only charges when you deploy Console agents to connect to your storage systems or data services, and some other NetApp data services accessible from the Console are licensed or subscription-based.
+
+.Do I need a license or subscription to use NetApp Console and NetApp Replication?
+
+You don't need a license or subscription to start using NetApp Console, and you only incur charges when you deploy Console agents in your cloud for connectivity to your storage systems or NetApp data services. However, some NetApp data services accessible from the Console are licensed or subscription-based.
+
+.Should I use NetApp Replication or NetApp Backup and Recovery to replicate data?
+
+NetApp Backup and Recovery (starting with Console agent 3.9.31) can also replicate data between ONTAP volumes and is useful if you also want to back up the same data to object storage using a single service. However, NetApp Backup and Recovery's replication feature does not support cascade configurations, replicating to or from FSx for ONTAP systems, or one-time volume replication. If you need any of that functionality, use NetApp Replication instead.
+
+== Replication policies
+
+.What is the difference between a Mirror policy and a Backup policy?
+
+There are three types of replication policies:
+
+* *Mirror*: replicates newly created snapshot copies to a destination volume, useful for disaster recovery preparation or one-time data replication; you can activate the destination volume for data access at any time.
+* *Backup*: replicates specific labeled snapshot copies to a destination volume and typically retains them longer than on the source volume, useful for restoring corrupted or lost data and for compliance/governance purposes.
+* *Mirror and Backup*: combines both disaster recovery and long-term retention, and is the default policy included with each system.
+
+If the default policies don't meet your needs, you can create custom policies using System Manager.
+
+.Why isn't my Backup (SnapVault) policy replicating any snapshot copies?
+
+A Backup policy only replicates snapshot copies whose labels match the labels defined in the source volume's snapshot policy. If the labels in your custom Backup policy don't match any labels in the snapshot policy, the system cannot replicate any snapshot copies. For example, a Backup policy with the labels "daily" and "weekly" only replicates snapshot copies with those labels.
+
+.What are the default snapshot retention settings if I use the default policies?
+
+The default snapshot policy creates hourly, daily, and weekly snapshot copies, retaining six hourly, two daily, and two weekly copies. The default Backup policy replicates daily and weekly snapshot copies, retaining seven daily and 52 weekly copies.
+
+== Setting up replication
+
+.What do I need to check before setting up data replication?
+
+Before replicating data, confirm the following:
+
+* The source and target systems already exist (or create them).
+* The source and destination volumes are running compatible ONTAP versions.
+* Requirements specific to Cloud Volumes ONTAP, on-prem ONTAP clusters, or Amazon FSx for ONTAP are met, such as security group rules, routed subnets, VPN connections, an active SnapMirror license, and VPC peering or Direct Connect as applicable.
+
+See the requirements section for full details.
+
+.What is required for cluster peering to work correctly across intercluster LIFs?
+
+The intercluster network should be configured so that cluster peers have pair-wise full-mesh connectivity, meaning each pair of clusters in a cluster peer relationship has connectivity among all of their intercluster LIFs. This applies when an ONTAP cluster with multiple LIFs is the source or destination.
+
+.Can I create a custom replication schedule?
+
+Several default schedules are available when setting up replication. If you want a different schedule, you must create a new schedule on the destination cluster using System Manager.
+
+== Managing replication relationships
+
+.Where do I manage replication relationships involving Amazon FSx for ONTAP file systems?
+
+Replication relationships with FSx for ONTAP file systems as source or target are managed in NetApp Workload Factory, not directly in NetApp Replication. After logging in to the Console, go to *Storage* > *Management* > *Systems*, select the FSx for ONTAP file system, and use the *Replication relationships* tab in Workload Factory.
+
+.What does it mean if a replication relationship shows an idle status and an uninitialized mirror state?
+
+This can occur when the destination system fails and then comes back online. You must initialize the relationship from the destination system using System Manager or the CLI in order for data replication to resume according to the defined schedule.
+
+.What is the difference between the Break, Resync, and Reverse Resync actions?
+
+These actions have different effects:
+
+* *Break*: breaks the relationship between source and destination volumes and activates the destination volume for data access. Typically used when the source volume can't serve data due to corruption, deletion, or an offline state.
+* *Resync*: reestablishes a broken relationship and resumes replication on schedule; the contents on the destination volume are overwritten by the source volume's contents.
+* *Reverse Resync*: reverses the roles of source and destination volumes, overwriting the original source volume's contents with the destination's contents. Any data written to the original source volume between the last replication and when it went offline is not preserved.
+
+.What happens if I delete a replication relationship?
+
+Deleting a relationship removes the data protection relationship between the source and destination volumes, so data replication no longer occurs between them. This action does not activate the destination volume for data access.
+
+.Why should I limit the maximum transfer rate instead of leaving it unlimited?
+
+An unlimited transfer rate might negatively impact the performance of other applications and your internet performance. You should limit the maximum transfer rate (specified in megabytes per second) when setting up replication, and you can edit it later from the Replication Status page.
+
+== Access and support
+
+.How do I log in to NetApp Replication?
+
+Go to the NetApp Console, log in using your NetApp Support Site credentials or a NetApp cloud login, and then select *Protection* > *Replication* from the left navigation.
+
+.What happened to BlueXP replication and BlueXP?
+
+BlueXP replication has been renamed to NetApp Replication, and BlueXP has been renamed to NetApp Console. The NetApp Console, built on the enhanced and restructured BlueXP foundation, provides centralized management of NetApp storage and data services across on-premises and cloud environments.
+
+.What do I need to do before I can open a support case with NetApp technical support?
+
+Before you can open a support case with NetApp technical support, you need to add a NetApp Support Site (NSS) account to your Console account and then register for support.
