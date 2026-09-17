@@ -68,7 +68,7 @@ The default snapshot policy creates hourly, daily, and weekly snapshot copies, r
 Before replicating data, confirm the following:
 
 * The source and target systems already exist (or create them).
-* For on-premises ONTAP configurations, the source and destination volumes must be running link:https://docs.netapp.com/us-en/ontap/data-protection/compatible-ontap-versions-snapmirror-concept.html[compatible ONTAP versions^].
+* Verify that the source and destination volumes are running compatible ONTAP versions; see link:https://docs.netapp.com/us-en/ontap/data-protection/compatible-ontap-versions-snapmirror-concept.html[compatible ONTAP versions^].
 * Ensure you've met the system-specific requirements for link:task-replicating-data.html[data replication requirements].
 
 .What is required for cluster peering to work correctly across intercluster LIFs?
