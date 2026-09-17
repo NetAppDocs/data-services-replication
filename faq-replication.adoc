@@ -19,13 +19,7 @@ This FAQ answers common questions about NetApp Replication. It focuses on concep
 
 .Which source and target system combinations does Replication support?
 
-Replication supports replication between the following source and target systems:
-
-* Cloud Volumes ONTAP can replicate to Amazon FSx for ONTAP, Cloud Volumes ONTAP, or an on-prem ONTAP cluster.
-* An on-prem ONTAP cluster can replicate to Amazon FSx for ONTAP, Cloud Volumes ONTAP, or another on-prem ONTAP cluster.
-* Amazon FSx for ONTAP can replicate to Amazon FSx for ONTAP, Cloud Volumes ONTAP, or an on-prem ONTAP cluster.
-
-See the link:concept-replication.html[supported systems table] for details.
+Replication supports Amazon FSx for ONTAP, Cloud Volumes ONTAP, and on-premises ONTAP. You can configure replication between any of the three systems.
 
 .What data protection configurations does Replication support?
 
@@ -43,13 +37,9 @@ The baseline transfer includes a full copy of the source data. Subsequent transf
 
 NetApp doesn't charge you for using Replication itself, but you should check with your cloud provider for applicable data ingress and egress charges. The NetApp Console incurs charges when you deploy Console agents to connect to your storage systems or data services; some other NetApp data services accessible from the Console are licensed or subscription-based.
 
-.Do I need a license or subscription to use the Console and Replication?
+.Do I need a license or subscription to use Replication?
 
-You don't need a license or subscription to start using the Console or Replication.
-
-.Should I use Replication or NetApp Backup and Recovery to replicate data?
-
-NetApp Backup and Recovery (starting with Console agent 3.9.31) can also replicate data between ONTAP volumes and is useful if you also want to back up the same data to object storage using a single service. However, NetApp Backup and Recovery's replication feature does not support cascade configurations, replicating to or from FSx for ONTAP systems, or one-time volume replication. If you need any of that functionality, use Replication instead.
+You don't need a license or subscription to start using the Console or Replication. For on-premises ONTAP configurations, an active SnapMirror license must be installed.
 
 == Replication policies
 
@@ -63,13 +53,13 @@ There are three types of replication policies:
 
 If the default policies don't meet your needs, you can create custom policies using System Manager.
 
-.Why isn't my Backup (SnapVault) policy replicating any snapshot copies?
+.Why isn't my backup policy replicating any snapshot copies?
 
-A Backup policy only replicates snapshot copies whose labels match the labels defined in the source volume's snapshot policy. If the labels in your custom Backup policy don't match any labels in the snapshot policy, the system cannot replicate any snapshot copies. For example, a Backup policy with the labels "daily" and "weekly" only replicates snapshot copies with those labels.
+A backup policy only replicates snapshot copies whose labels match the labels defined in the source volume's snapshot policy. If the labels in your custom backup policy don't match any labels in the snapshot policy, the system cannot replicate any snapshot copies. For example, a backup policy with the labels "daily" and "weekly" only replicates snapshot copies with those labels.
 
 .What are the default snapshot retention settings if I use the default policies?
 
-The default snapshot policy creates hourly, daily, and weekly snapshot copies, retaining six hourly, two daily, and two weekly copies. The default Backup policy replicates daily and weekly snapshot copies, retaining seven daily and 52 weekly copies.
+The default snapshot policy creates hourly, daily, and weekly snapshot copies, retaining six hourly, two daily, and two weekly copies. The default backup policies replicate daily and weekly snapshot copies; it retains 7 daily and 52 weekly snapshot copies.
 
 == Setting up replication
 
@@ -78,10 +68,8 @@ The default snapshot policy creates hourly, daily, and weekly snapshot copies, r
 Before replicating data, confirm the following:
 
 * The source and target systems already exist (or create them).
-* The source and destination volumes are running compatible ONTAP versions.
-* Requirements specific to Cloud Volumes ONTAP, on-prem ONTAP clusters, or Amazon FSx for ONTAP are met, such as security group rules, routed subnets, VPN connections, an active SnapMirror license, and VPC peering or Direct Connect as applicable.
-
-See the link:task-replicating-data.html[data replication requirements] for full details.
+* For on-premises ONTAP configurations, the source and destination volumes must be running link:https://docs.netapp.com/us-en/ontap/data-protection/compatible-ontap-versions-snapmirror-concept.html[compatible ONTAP versions^].
+* Ensure you've met the system-specific requirements for link:task-replicating-data.html[data replication requirements].
 
 .What is required for cluster peering to work correctly across intercluster LIFs?
 
@@ -107,7 +95,7 @@ These actions have different effects:
 
 .What happens if I delete a replication relationship?
 
-Deleting a relationship removes the data protection relationship between the source and destination volumes, so data replication no longer occurs between them. This action does not activate the destination volume for data access.
+Delete the data protection relationship between the source and destination volumes, deleting the SnapMirror relationship from the destination site and releases the relationship from the source site. Deleting the relationship also breaks the SnapMirror relationship, which briefly makes the destination volume the primary site for read/write operations to ensure the destination can be used independently after replication is removed.
 
 .Why should I limit the maximum transfer rate instead of leaving it unlimited?
 
