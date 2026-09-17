@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: faq-replication.html
-keywords: faq, frequently asked questions, frequently asked questions about netapp replication, snapmirror, snapvault, replication policies, backup policies, disaster recovery, data protection, cloud volumes ontap, amazon fsx for ontap, ontap, mirror, backup, cascade, fanout
-summary: "Frequently asked questions about NetApp Replication, SnapMirror, and SnapVault."
+keywords: faq, frequently asked questions, snapmirror, snapvault, replication policies, backup policies, data protection, cloud volumes ontap, amazon fsx, ontap, mirror, backup, cascade, fanout
+summary: "Review frequently asked questions about NetApp Replication, including supported configurations and how to resolve common issues."
 ---
 
 = FAQ for NetApp Replication
