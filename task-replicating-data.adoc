@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: task-replicating-data.html
 keywords: ontap, cluster, discover, manage, BlueXP, hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, schedule, relationship, max transfer, maximum transfer rate, rate, transfer rate, intercluster lif, replication requirement, requirements, disaster recovery, DR, archive, archiving, retention, amazon fsx for ontap, fsx for ontap
-summary: You can replicate data between ONTAP systems by choosing a one-time data replication for data transfer, or a recurring schedule for disaster recovery or long-term retention. For example, you can set up data replication from an on-prem ONTAP system to Cloud Volumes ONTAP for disaster recovery.
+summary: You can replicate data between ONTAP systems by choosing a one-time data replication for data transfer, or a recurring schedule for disaster recovery or long-term retention. For example, you can set up data replication from an on-premises ONTAP system to Cloud Volumes ONTAP for disaster recovery.
 ---
 
 = Set up data replication in NetApp Replication
@@ -17,7 +17,7 @@ Using NetApp Replication, replicate data between ONTAP systems by choosing a one
 
 == Step 1: Review data replication requirements
 
-Before you can replicate data, you should confirm that specific requirements are met for Cloud Volumes ONTAP, on-prem ONTAP clusters, or Amazon FSx for ONTAP.
+Before you can replicate data, you should confirm that specific requirements are met for Cloud Volumes ONTAP, on-premises ONTAP clusters, or Amazon FSx for ONTAP.
 
 systems::
 If you haven't done so already, you need to create the systems for the source and target in the data replication relationship.
@@ -53,7 +53,7 @@ https://docs.netapp.com/us-en/ontap/peering/prerequisites-cluster-peering-refere
 Requirements specific to Amazon FSx for ONTAP::
 * If Cloud Volumes ONTAP is part of the relationship, ensure connectivity between VPCs by enabling VPC peering or by using a Transit Gateway.
 
-* If an on-prem ONTAP cluster is part of the relationship, ensure connectivity between your on-premises network and the AWS VPC by using a Direct Connect or VPN connection.
+* If an on-premises ONTAP cluster is part of the relationship, ensure connectivity between your on-premises network and the AWS VPC by using a Direct Connect or VPN connection.
 
 == Step 2: Replicate data between systems
 
@@ -67,7 +67,7 @@ You can replicate data by choosing a one-time data replication, which can help y
 //+
 //image:screenshot-drag-and-drop.png[Screen shot: Shows a system being placed on top of another system to start the data replication process.]
 +
-The remaining steps provide an example of how to create a sync relationship between Cloud Volumes ONTAP or on-prem ONTAP clusters.
+The remaining steps provide an example of how to create a sync relationship between Cloud Volumes ONTAP or on-premises ONTAP clusters.
 
 . *Source and Destination Peering Setup*: If this page appears, select all of the intercluster LIFs for the cluster peer relationship.
 +

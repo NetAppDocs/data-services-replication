@@ -16,6 +16,7 @@ NetApp Replication lets users copy data between ONTAP systems, Cloud Volumes ONT
 
 - **NetApp Console:** The central management interface used to access and use NetApp Replication.
 - **Console agent:** The cloud-deployed connector used to connect the Console to your storage systems and data services.
+- **NetApp Replication:** In the title and first body mention of a topic, refer to the product as "NetApp Replication." Subsequent mentions of the product name should simply be Replication. If the product name appears in the summary metadata, follow the same rules: the first mention should be "NetApp Replication"; any subsequent mentions should only be to "Replication". 
 - **ONTAP cluster:** An ONTAP storage system, either on premises or in the cloud, that can participate in replication relationships.
 - **Replication relationship:** The connection between the source and destination volumes that keeps data synchronized.
 - **Replication policy:** The rule set that controls how data is copied, including SnapMirror and SnapVault behavior.
