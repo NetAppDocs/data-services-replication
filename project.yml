@@ -7,6 +7,7 @@ settings:
     harmony_enabled: true
   release_notes_autogen:
     release_notes_repo: console-relnotes
+  harmony_enabled: true
   rss_page: "whats-new.html"
 sidebar:
   entries:
@@ -34,6 +35,8 @@ sidebar:
           url: /concept-backup-policies.html
     - title: Knowledge and support
       entries:
+        - title: FAQ
+          url: /faq-replication.html
         - title: Register for support
           url: /task-support-registration.html
         - title: Get help
