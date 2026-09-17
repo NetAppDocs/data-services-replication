@@ -66,8 +66,6 @@ Any data written to the original source volume between the last data replication
 | Delete 
 a| Delete the data protection relationship between the source and destination volumes. This ends data replication between volumes, deletes the SnapMirror relationship from the destination site, and releases the relationship from the source site. 
 
-Deleting does not activate the destination volume for data access.
-
 [NOTE]
 Deleting the relationship also breaks the SnapMirror relationship, which briefly makes the destination volume the primary site for read/write operations to ensure the destination can be used independently after replication is removed.
 |===
