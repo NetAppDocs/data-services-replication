@@ -95,7 +95,7 @@ These actions have different effects:
 
 .What happens if I delete a replication relationship?
 
-Delete the data protection relationship between the source and destination volumes, deleting the SnapMirror relationship from the destination site and releases the relationship from the source site. Deleting the relationship also breaks the SnapMirror relationship, which briefly makes the destination volume the primary site for read/write operations to ensure the destination can be used independently after replication is removed.
+Deleting the data protection relationship between the source and destination volumes ends data replication between volumes, deletes the SnapMirror relationship from the destination site, and releases the relationship from the source site. It also breaks the SnapMirror relationship, briefly making the destination volume the primary site for read/write operations so the destination can be used independently after replication is removed.
 
 .Why should I limit the maximum transfer rate instead of leaving it unlimited?
 
