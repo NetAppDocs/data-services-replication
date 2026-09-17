@@ -34,7 +34,7 @@ NOTE: If the status of a relationship is idle and the Mirror State is uninitiali
 +
 The following table describes the available actions:
 +
-[cols=2*,options="header",cols="15,85"]
+[options="header",cols="15,85"]
 |===
 | Action
 | Description
