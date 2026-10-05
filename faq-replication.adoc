@@ -5,7 +5,7 @@ keywords: faq, frequently asked questions, snapmirror, snapvault, replication po
 summary: "Review frequently asked questions about NetApp Replication, including supported configurations and how to resolve common issues."
 ---
 
-= NetApp Replication frequently asked questions
+= FAQ for NetApp Replication
 :hardbreaks:
 :nofooter:
 :icons: font
