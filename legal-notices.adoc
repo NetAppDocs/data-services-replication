@@ -5,7 +5,7 @@ keywords:
 summary:
 ---
 
-= Legal notices
+= NetApp Replication legal notices
 :icons: font
 :imagesdir: ./media/
 
